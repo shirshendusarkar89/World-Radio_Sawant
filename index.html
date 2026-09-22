@@ -3052,6 +3052,155 @@ body.wrLight{
 }
 </style>
 
+
+<style id="portrait-full-width-display-v3">
+/* =========================================================
+   PORTRAIT + FULL-WIDTH STATION DISPLAY
+   Visual/layout layer only. Existing data, selection and audio JS untouched.
+   The portrait occupies a dedicated left visual zone while station text and
+   spectrum use ALL remaining horizontal space to its right.
+   ========================================================= */
+.radioUnit .dial{
+  position:relative;
+  overflow:hidden;
+}
+
+/* Dedicated portrait zone inside the main display area. */
+.radioUnit .radioPortrait{
+  position:absolute !important;
+  left:1.5% !important;
+  top:36% !important;
+  bottom:auto !important;
+  width:27% !important;
+  height:58% !important;
+  display:flex !important;
+  align-items:flex-end !important;
+  justify-content:center !important;
+  z-index:2 !important;
+  pointer-events:none !important;
+  overflow:hidden !important;
+}
+
+.radioUnit .radioPortrait img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center bottom !important;
+  display:block !important;
+  filter:drop-shadow(0 6px 12px rgba(0,0,0,.58));
+}
+
+/* Do NOT reserve a fixed 180px column. The right-side information gets the
+   entire horizontal area remaining after the portrait zone. */
+.radioUnit .stationCenter{
+  width:100% !important;
+  margin-left:0 !important;
+  box-sizing:border-box !important;
+  position:relative !important;
+  z-index:3 !important;
+}
+
+/* LIVE RADIO CONSOLE remains centred across the whole display. */
+.radioUnit .stationCenter .onair{
+  width:100%;
+  text-align:center;
+}
+
+/* Station information uses the complete right-hand area beside the portrait. */
+.radioUnit .stationCenter .stationName,
+.radioUnit .stationCenter .city,
+.radioUnit .stationCenter .spectrum,
+.radioUnit .stationCenter .phaseNote{
+  margin-left:28% !important;
+  width:72% !important;
+  max-width:none !important;
+  box-sizing:border-box;
+}
+
+.radioUnit .stationCenter .stationName{
+  text-align:center;
+  padding:0 1.5%;
+  overflow-wrap:anywhere;
+}
+
+.radioUnit .stationCenter .city{
+  text-align:center;
+  padding:0 1.5%;
+}
+
+.radioUnit .stationCenter .spectrum{
+  margin-right:0 !important;
+  justify-content:center;
+  gap:4px;
+}
+
+.radioUnit .stationCenter .phaseNote{
+  text-align:center;
+}
+
+/* Keep the portrait clear of the player below the dial. */
+@media (min-width:701px){
+  .radioUnit .radioPortrait{
+    top:34% !important;
+    width:26% !important;
+    height:61% !important;
+  }
+  .radioUnit .stationCenter .stationName,
+  .radioUnit .stationCenter .city,
+  .radioUnit .stationCenter .spectrum,
+  .radioUnit .stationCenter .phaseNote{
+    margin-left:27% !important;
+    width:73% !important;
+  }
+}
+
+/* Narrow/mobile display: retain the same intentional composition. */
+@media (max-width:700px){
+  .radioUnit .radioPortrait{
+    left:1% !important;
+    top:35% !important;
+    width:30% !important;
+    height:58% !important;
+  }
+  .radioUnit .stationCenter .stationName,
+  .radioUnit .stationCenter .city,
+  .radioUnit .stationCenter .spectrum,
+  .radioUnit .stationCenter .phaseNote{
+    margin-left:31% !important;
+    width:69% !important;
+  }
+  .radioUnit .stationCenter .stationName{
+    font-size:clamp(19px,6.8vw,31px) !important;
+    letter-spacing:1.2px !important;
+  }
+  .radioUnit .stationCenter .spectrum{
+    gap:2px;
+  }
+  .radioUnit .stationCenter .spectrum .bar{
+    width:3px;
+  }
+}
+
+@media (max-width:430px){
+  .radioUnit .radioPortrait{
+    left:.5% !important;
+    top:36% !important;
+    width:31% !important;
+    height:56% !important;
+  }
+  .radioUnit .stationCenter .stationName,
+  .radioUnit .stationCenter .city,
+  .radioUnit .stationCenter .spectrum,
+  .radioUnit .stationCenter .phaseNote{
+    margin-left:32% !important;
+    width:68% !important;
+  }
+  .radioUnit .stationCenter .stationName{
+    font-size:clamp(18px,6.5vw,27px) !important;
+  }
+}
+</style>
+
 </head>
 <body>
 
